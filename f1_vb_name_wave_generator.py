@@ -50,73 +50,74 @@ for root, dirs, files in os.walk(cdir):
                             teamname = fileline.split("\"")[1].strip()
                         except:
                             teamname = fileline.split("=")[1].strip()
+
                     if fileline.strip().upper().startswith("MANUFACTURER"):
                         manufacturer = fileline.split("\"")[1].strip()
                     if fileline.strip().upper().startswith("DRIVER"):
                         drivername = fileline.split("\"")[1].strip()
-                f.write("\nvoice --mono --8bit -v 100  -o \"temporary_sound_files\\pws"+manufacturer+"_TBx.wav\" " + teamname)
-                f.write(" && ffmpeg -y -i \"temporary_sound_files\\pws"+manufacturer+"_TDBx.wav\" -filter:a \"volume=12\" \"temporary_sound_files\\pws"+manufacturer+"_TDB.wav\"")
-
-                f.write("\nvoice --mono --8bit -v 100  -o \"temporary_sound_files\\pws"+manufacturer+"_TDBx.wav\" " + teamname + " driver")
-                f.write(" && ffmpeg -y -i \"temporary_sound_files\\pws"+manufacturer+"_TDEx.wav\" -filter:a \"volume=12\" \"temporary_sound_files\\pws"+manufacturer+"_TDE.wav\"")
-
-                f.write("\nvoice --mono --8bit -v 100  -o \"temporary_sound_files\\pws"+manufacturer+"_TDEx.wav\" " + teamname + " driver")
+                f.write("\nvoice --mono --8bit -v 100  -o \"temporary_sound_files\\pws"+manufacturer+"_TBx.wav\" \"" + teamname + "\"")
                 f.write(" && ffmpeg -y -i \"temporary_sound_files\\pws"+manufacturer+"_TBx.wav\" -filter:a \"volume=12\" \"temporary_sound_files\\pws"+manufacturer+"_TB.wav\"")
 
-                f.write("\nvoice --mono --8bit -v 100  -o \"temporary_sound_files\\pws"+manufacturer+"_TEx.wav\" " + teamname)
+                f.write("\nvoice --mono --8bit -v 100  -o \"temporary_sound_files\\pws"+manufacturer+"_TDEx.wav\" \"" + teamname + " driver\"")
+                f.write(" && ffmpeg -y -i \"temporary_sound_files\\pws"+manufacturer+"_TDEx.wav\" -filter:a \"volume=12\" \"temporary_sound_files\\pws"+manufacturer+"_TDE.wav\"")
+
+                f.write("\nvoice --mono --8bit -v 100  -o \"temporary_sound_files\\pws"+manufacturer+"_TDBx.wav\" \"" + teamname + " driver\"")
+                f.write(" && ffmpeg -y -i \"temporary_sound_files\\pws"+manufacturer+"_TDBx.wav\" -filter:a \"volume=12\" \"temporary_sound_files\\pws"+manufacturer+"_TDB.wav\"")
+
+                f.write("\nvoice --mono --8bit -v 100  -o \"temporary_sound_files\\pws"+manufacturer+"_TEx.wav\" \"" + teamname + "\"")
                 f.write(" && ffmpeg -y -i \"temporary_sound_files\\pws"+manufacturer+"_TEx.wav\" -filter:a \"volume=12\" \"temporary_sound_files\\pws"+manufacturer+"_TE.wav\"")
 
-                f.write("\nvoice --mono --8bit -v 100  -o \"temporary_sound_files\\tv"+manufacturer+"_TBx.wav\" " + teamname)
+                f.write("\nvoice --mono --8bit -v 100  -o \"temporary_sound_files\\tv"+manufacturer+"_TBx.wav\" \"" + teamname + "\"")
                 f.write(" && ffmpeg -y -i \"temporary_sound_files\\tv"+manufacturer+"_TBx.wav\" -filter:a \"volume=12\" \"temporary_sound_files\\tv"+manufacturer+"_TB.wav\"")
 
-                f.write("\nvoice --mono --8bit -v 100  -o \"temporary_sound_files\\tv"+manufacturer+"_TDBx.wav\" " + teamname + " driver")
+                f.write("\nvoice --mono --8bit -v 100  -o \"temporary_sound_files\\tv"+manufacturer+"_TDBx.wav\" \"" + teamname + " driver\"")
                 f.write(" && ffmpeg -y -i \"temporary_sound_files\\tv"+manufacturer+"_TDBx.wav\" -filter:a \"volume=12\" \"temporary_sound_files\\tv"+manufacturer+"_TDB.wav\"")
 
-                f.write("\nvoice --mono --8bit -v 100  -o \"temporary_sound_files\\tv"+manufacturer+"_TDEx.wav\" " + teamname + " driver")
+                f.write("\nvoice --mono --8bit -v 100  -o \"temporary_sound_files\\tv"+manufacturer+"_TDEx.wav\" \"" + teamname + " driver\"")
                 f.write(" && ffmpeg -y -i \"temporary_sound_files\\tv"+manufacturer+"_TDEx.wav\" -filter:a \"volume=12\" \"temporary_sound_files\\tv"+manufacturer+"_TDE.wav\"")
 
-                f.write("\nvoice --mono --8bit -v 100  -o \"temporary_sound_files\\tv"+manufacturer+"_TEx.wav\" " + teamname)
+                f.write("\nvoice --mono --8bit -v 100  -o \"temporary_sound_files\\tv"+manufacturer+"_TEx.wav\" \"" + teamname + "\"")
                 f.write(" && ffmpeg -y -i \"temporary_sound_files\\tv"+manufacturer+"_TEx.wav\" -filter:a \"volume=12\" \"temporary_sound_files\\tv"+manufacturer+"_TE.wav\"")
 
                 f.write("\nmkdir \""+prefix+root[0:34]+"\\" + manufacturer+"\"")
 
-                f.write("\ncopy /y  \"temporary_sound_files\\pws"+manufacturer+"_TB.wav\" \""+prefix+root[0:34]+"\\" + manufacturer+"\\" + "pws"+manufacturer+"_TB.wav\"")
-                f.write("\ncopy /y  \"temporary_sound_files\\pws"+manufacturer+"_TDB.wav\" \""+prefix+root[0:34]+"\\" + manufacturer+"\\" + "pws"+manufacturer+"_TDB.wav\"")
-                f.write("\ncopy /y  \"temporary_sound_files\\pws"+manufacturer+"_TDE.wav\"  \""+prefix+root[0:34]+"\\" + manufacturer+"\\" + "pws"+manufacturer+"_TDE.wav\"")
-                f.write("\ncopy /y  \"temporary_sound_files\\pws"+manufacturer+"_TE.wav\"  \""+prefix+root[0:34]+"\\" + manufacturer+"\\" + "pws"+manufacturer+"_TE.wav\"")
-                f.write("\ncopy /y  \"temporary_sound_files\\tv"+manufacturer+"_TB.wav\"  \""+prefix+root[0:34]+"\\" + manufacturer+"\\" + "tv"+manufacturer+"_TB.wav\"")
-                f.write("\ncopy /y  \"temporary_sound_files\\tv"+manufacturer+"_TDB.wav\"  \""+prefix+root[0:34]+"\\" + manufacturer+"\\" + "tv"+manufacturer+"_TDB.wav\"")
-                f.write("\ncopy /y  \"temporary_sound_files\\tv"+manufacturer+"_TDE.wav\"  \""+prefix+root[0:34]+"\\" + manufacturer+"\\" + "tv"+manufacturer+"_TDE.wav\"")
-                f.write("\ncopy /y  \"temporary_sound_files\\tv"+manufacturer+"_TE.wav\"  \""+prefix+root[0:34]+"\\" + manufacturer+"\\" + "tv"+manufacturer+"_TE.wav\"")
+                f.write("\ncopy /y  \"temporary_sound_files\\pws"+manufacturer+"_TB.wav\" \""+prefix+root[0:34]+"\\" + manufacturer+"\\pws"+manufacturer+"_TB.wav\"")
+                f.write("\ncopy /y  \"temporary_sound_files\\pws"+manufacturer+"_TDB.wav\" \""+prefix+root[0:34]+"\\" + manufacturer+"\\pws"+manufacturer+"_TDB.wav\"")
+                f.write("\ncopy /y  \"temporary_sound_files\\pws"+manufacturer+"_TDE.wav\"  \""+prefix+root[0:34]+"\\" + manufacturer+"\\pws"+manufacturer+"_TDE.wav\"")
+                f.write("\ncopy /y  \"temporary_sound_files\\pws"+manufacturer+"_TE.wav\"  \""+prefix+root[0:34]+"\\" + manufacturer+"\\pws"+manufacturer+"_TE.wav\"")
+                f.write("\ncopy /y  \"temporary_sound_files\\tv"+manufacturer+"_TB.wav\"  \""+prefix+root[0:34]+"\\" + manufacturer+"\\tv"+manufacturer+"_TB.wav\"")
+                f.write("\ncopy /y  \"temporary_sound_files\\tv"+manufacturer+"_TDB.wav\"  \""+prefix+root[0:34]+"\\" + manufacturer+"\\tv"+manufacturer+"_TDB.wav\"")
+                f.write("\ncopy /y  \"temporary_sound_files\\tv"+manufacturer+"_TDE.wav\"  \""+prefix+root[0:34]+"\\" + manufacturer+"\\tv"+manufacturer+"_TDE.wav\"")
+                f.write("\ncopy /y  \"temporary_sound_files\\tv"+manufacturer+"_TE.wav\"  \""+prefix+root[0:34]+"\\" + manufacturer+"\\tv"+manufacturer+"_TE.wav\"")
 
                 try:
                     voice = drivers_voices[drivername]
                 except:
                     voice = "Zira"
-                soundname = ("".join([i for i in drivername if not i.isdigit()])).replace("-"," ")
+                soundname = "\"" + ("".join([i for i in drivername if not i.isdigit()])).replace("-"," ") + "\""
 
                 f.write ("\nvoice -n \"Microsoft " + voice + " Desktop\"  --mono --8bit -v 100  -o \"temporary_sound_files\\tv"+drivername+"_xFB.wav\" " + soundname)
                 f.write(" && ffmpeg -y -i \"temporary_sound_files\\tv"+drivername+"_xFB.wav\" -filter:a \"volume=12\" \"temporary_sound_files\\tv"+drivername+"_FB.wav\"")
 
                 f.write ("\nvoice -n \"Microsoft " + voice + " Desktop\"  --mono --8bit -v 100  -o \"temporary_sound_files\\tv"+drivername+"_xFE.wav\" " + soundname)
-                f.write(" && ffmpeg -y -i \"temporary_sound_files\\pws"+drivername+"_xFB.wav\" -filter:a \"volume=12\" \"temporary_sound_files\\pws"+drivername+"_FB.wav\"")
+                f.write(" && ffmpeg -y -i \"temporary_sound_files\\tv"+drivername+"_xFE.wav\" -filter:a \"volume=12\" \"temporary_sound_files\\tv"+drivername+"_FE.wav\"")
 
                 f.write ("\nvoice -n \"Microsoft " + voice + " Desktop\"  --mono --8bit -v 100  -o \"temporary_sound_files\\pws"+drivername+"_xFB.wav\" " + soundname)
-                f.write(" && ffmpeg -y -i \"temporary_sound_files\\tv"+drivername+"_xFE.wav\" -filter:a \"volume=12\" \"temporary_sound_files\\tv"+drivername+"_FE.wav\"")
+                f.write(" && ffmpeg -y -i \"temporary_sound_files\\pws"+drivername+"_xFB.wav\" -filter:a \"volume=12\" \"temporary_sound_files\\pws"+drivername+"_FB.wav\"")
 
                 f.write ("\nvoice -n \"Microsoft " + voice + " Desktop\"  --mono --8bit -v 100  -o \"temporary_sound_files\\pws"+drivername+"_xFE.wav\" " + soundname)
                 f.write(" && ffmpeg -y -i \"temporary_sound_files\\pws"+drivername+"_xFE.wav\" -filter:a \"volume=12\" \"temporary_sound_files\\pws"+drivername+"_FE.wav\"")
 
-                f.write ("\nvoice -n \"Microsoft " + voice + " Desktop\"  --mono --8bit -v 100  -o \"temporary_sound_files\\tv"+drivername+"_xSB.wav\" " + soundname.split(" ")[-1]) 
+                f.write ("\nvoice -n \"Microsoft " + voice + " Desktop\"  --mono --8bit -v 100  -o \"temporary_sound_files\\tv"+drivername+"_xSB.wav\" \"" + soundname.split(" ")[-1]) 
                 f.write(" && ffmpeg -y -i \"temporary_sound_files\\tv"+drivername+"_xSB.wav\" -filter:a \"volume=12\" \"temporary_sound_files\\tv"+drivername+"_SB.wav\"")
 
-                f.write ("\nvoice -n \"Microsoft " + voice + " Desktop\"  --mono --8bit -v 100  -o \"temporary_sound_files\\tv"+drivername+"_xSE.wav\" " + soundname.split(" ")[-1])
+                f.write ("\nvoice -n \"Microsoft " + voice + " Desktop\"  --mono --8bit -v 100  -o \"temporary_sound_files\\tv"+drivername+"_xSE.wav\" \"" + soundname.split(" ")[-1])
                 f.write(" && ffmpeg -y -i \"temporary_sound_files\\tv"+drivername+"_xSE.wav\" -filter:a \"volume=12\" \"temporary_sound_files\\tv"+drivername+"_SE.wav\"")
 
-                f.write ("\nvoice -n \"Microsoft " + voice + " Desktop\"  --mono --8bit -v 100  -o \"temporary_sound_files\\pws"+drivername+"_xSB.wav\" " + soundname.split(" ")[-1])
+                f.write ("\nvoice -n \"Microsoft " + voice + " Desktop\"  --mono --8bit -v 100  -o \"temporary_sound_files\\pws"+drivername+"_xSB.wav\" \"" + soundname.split(" ")[-1])
                 f.write(" && ffmpeg -y -i \"temporary_sound_files\\pws"+drivername+"_xSB.wav\" -filter:a \"volume=12\" \"temporary_sound_files\\pws"+drivername+"_SB.wav\"")
 
-                f.write ("\nvoice -n \"Microsoft " + voice + " Desktop\"  --mono --8bit -v 100  -o \"temporary_sound_files\\pws"+drivername+"_xSE.wav\" " + soundname.split(" ")[-1])
+                f.write ("\nvoice -n \"Microsoft " + voice + " Desktop\"  --mono --8bit -v 100  -o \"temporary_sound_files\\pws"+drivername+"_xSE.wav\" \"" + soundname.split(" ")[-1])
                 f.write(" && ffmpeg -y -i \"temporary_sound_files\\pws"+drivername+"_xSE.wav\" -filter:a \"volume=12\" \"temporary_sound_files\\pws"+drivername+"_SE.wav\"")
 
                 f.write("\ncopy /y  \"temporary_sound_files\\tv"+drivername+"_FB.wav\" \""+prefix+"\\Formula1\Audio\Commentary\\tv"+drivername+"_FB.wav\"")
